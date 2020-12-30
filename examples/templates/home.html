@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="http://livejs.com/live.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with GPT-XL</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<script>
+function myFunction() {
+var message= $('#message').val();
+  $.ajax({
+              url: "/join",
+              type: "POST",
+              data: {message:message}
+          }).done
+};
+function restartConversation() {
+  $.ajax({
+              url: "/join",
+              type: "POST",
+              data: {message:'##RESTART##'}
+          }).done
+};
+
+  </script>
+<body>
+    <p>
+        <h2>Chat with GPT-XL!</h2><br>Response can take a while. Please be patient.<br>This service would not have been possible without the great work of  <a href="https://openai.com/blog/openai-api/">OpenAI</a> <br>Developed by Lucas Vergeest      <a href="https://www.linkedin.com/in/lucasvergeest/">
+         <img alt="LinkedIn" src="https://veldboereenhoorn.nl/wp-content/uploads/2018/08/Linkedin-logo-1-550x550-300x300.png"
+         width="30" height="30"></a><br><br>
+        Message: <input type="text" style="font-size: 20px; width: 500px;" autofocus onkeydown="if (event.keyCode == 13) { myFunction(); return false; }" id="message" name="message">   <button id="clicked" onclick="myFunction()">Submit</button>  <button id="restart" onclick="restartConversation()">Restart</button>
+    </p>
+    <div class="show-data" >
+    </div>
+</body>
+</html>
